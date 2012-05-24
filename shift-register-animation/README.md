@@ -2,7 +2,7 @@ Demonstrates using a shift register to create a simple animation with 16 LEDs, w
 
 ![Raspberry Pi connected to a shift register](https://p.twimg.com/AtnfdJyCMAADUCw.jpg)
 
-__[Watch a demonstration video](http://elinux.org/Rpi_Low-level_peripherals)__
+__[Watch a demonstration video](http://www.youtube.com/watch?v=4BtmlIVuuBg)__
 
 The example should run on the Raspberry Pi Debian Squeeze distro, with the standard Python and no additional libraries.
 
