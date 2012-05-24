@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<title>Slider</title> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/lib/jquery.mobile-1.1.0.min.css">
+<script src="/static/lib/jquery-1.7.1.min.js"></script>
+<script src="/static/lib/jquery.mobile-1.1.0.min.js"></script>
+
+<script>
+  $(function() {
+
+    var websocket = new WebSocket('ws://' + document.location.host + '/slider-value');
+    websocket.onopen = function() {
+      console.log('connected');
+    };
+    websocket.onclose = function() {
+      console.log('disconnected');
+    };
+    websocket.onmessage = function(event) {
+      $('#slider1').val(event.data).data('updating', true).slider('refresh').data('updating', false);
+    };
+    $('#slider1').change(function(event) {
+      if (!$(event.target).data('updating')) {
+        websocket.send($(event.target).val());
+      }
+    });
+  });
+</script>
+
+<div data-role="page">
+
+  <div data-role="header">
+    <h1>Slider Demo</h1>
+  </div>
+
+  <div data-role="content">
+    <p>Adjust LED bar graph, by flicking slider</p>
+    <p>
+      <input type="range" id="slider1" value="31" min="0" max="63" data-highlight="true">
+    </p>
+  </div>
+
+</div>
