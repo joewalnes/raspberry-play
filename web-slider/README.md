@@ -14,3 +14,5 @@ Run
 
     ./run
 
+Then point your desktop or mobile browser to http://[hostname]:8888/. Try multiple browsers for fun.
+
