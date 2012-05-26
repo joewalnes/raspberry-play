@@ -12,5 +12,5 @@ Setup
 Run
 ---
 
-    ./slider.py
+    ./run
 

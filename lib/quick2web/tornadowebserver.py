@@ -1,44 +1,11 @@
-class WebServer(object):
-
-  def static_files(self, path, directory_on_disk, default_filename='index.html'):
-    pass
-
-  def websocket(self, path, handler):
-    pass
-
-  def run(self):
-    pass
-
-
-class WebSocketHandler(object):
-
-  def on_open(self, connection):
-    pass
-
-  def on_close(self, connection):
-    pass
-
-  def on_message(self, connection, message):
-    pass
-
-
-class WebSocketConnection(object):
-
-  def send(self, message):
-    pass
-
-  def close(self):
-    pass
-
-
-## Tornado backed implementation
+import webserver
 
 from socket import gethostname
 from tornado import websocket
 from tornado.ioloop import IOLoop
 from tornado.web import Application
 
-class TornadoWebServer(WebServer):
+class TornadoWebServer(webserver.WebServer):
 
   def __init__(self,
         port,
@@ -84,7 +51,7 @@ class TornadoWebSocketAdapter(websocket.WebSocketHandler):
     self.handler.on_close(self.connection)
 
 
-class TornadoWebSocketConnection(WebSocketConnection):
+class TornadoWebSocketConnection(webserver.WebSocketConnection):
 
   def __init__(self, tornado_handler):
     self.tornado_handler = tornado_handler

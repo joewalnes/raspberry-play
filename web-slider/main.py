@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 
-from webserver import TornadoWebServer
-from sharedvalue import SharedValueHandler
+from quick2web import WebServer, SharedValue
 
 def main():
-  webserver = TornadoWebServer(port=8888, debug=True)
+  webserver = WebServer(port=8888, debug=True)
   webserver.static_files('/static/', 'static')
-  webserver.websocket('/slider-value', SharedValueHandler(0, on_change=slider_updated))
+  webserver.websocket('/slider-value', SharedValue(0, on_change=slider_updated))
   print 'Listening on %s' % webserver.url
   webserver.run()
 

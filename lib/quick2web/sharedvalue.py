@@ -2,7 +2,7 @@ import json
 
 from webserver import WebSocketHandler
 
-class SharedValueHandler(WebSocketHandler):
+class SharedValue(WebSocketHandler):
 
   def __init__(self, value=None, on_change=None):
     self.value = value
