@@ -1,15 +1,17 @@
+import os
 import webserver
 
 from socket import gethostname
 from tornado import websocket
 from tornado.ioloop import IOLoop
-from tornado.web import Application
+from tornado.web import Application, StaticFileHandler
 
 class TornadoWebServer(webserver.WebServer):
 
   def __init__(self,
         port,
         debug = False,
+        quick2web_resources = os.path.join(os.path.dirname(__file__), 'resources'),
         ioloop = IOLoop.instance()):
     self.handlers = []
     self.application = None
@@ -19,11 +21,11 @@ class TornadoWebServer(webserver.WebServer):
     self.settings = dict(
       debug = debug # Auto reload app when Python code changes on disk, stack traces on error pages
     )
+    if quick2web_resources:
+      self.static_files('/quick2web/', quick2web_resources)
 
   def static_files(self, path, directory_on_disk, default_filename='index.html'):
-    self.settings['static_url_prefix'] = path
-    self.settings['static_path'] = directory_on_disk
-    self.settings['static_handler_args'] = dict(default_filename = default_filename)
+    self.handlers.append((path + '(.*)', StaticFileHandler, dict(path=directory_on_disk, default_filename=default_filename)))
 
   def websocket(self, path, handler):
     self.handlers.append((path, TornadoWebSocketAdapter, dict(handler=handler)))
