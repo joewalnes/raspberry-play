@@ -1,7 +1,7 @@
 function SharedValue(path) {
   this.value = undefined;
   this.updating = false;
-  var ws = new ReconnectingWebSocket('ws://' + document.location.host + path);
+  var ws = new ReconnectingWebSocket('ws://' + document.location.host + path, 'sharedvalue');
   ws.onopen = $.proxy(function() {
     $(this).trigger('open', this.value);
   }, this);
