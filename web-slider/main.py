@@ -4,8 +4,8 @@ from quick2web import WebServer, SharedValue
 
 def main():
   webserver = WebServer(port=8888, debug=True)
-  webserver.static_files('/static/', 'static')
-  webserver.websocket('/slider-value', SharedValue(0, on_change=slider_updated))
+  webserver.websocket('/slider-value', SharedValue(20, on_change=slider_updated))
+  webserver.static_files('/', './static')
   print 'Listening on %s' % webserver.url
   webserver.run()
 
@@ -15,4 +15,3 @@ def slider_updated(value, connection):
 
 if __name__ == '__main__':
   main()
-
