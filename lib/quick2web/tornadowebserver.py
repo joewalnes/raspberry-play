@@ -50,6 +50,13 @@ class TornadoWebSocketAdapter(websocket.WebSocketHandler):
   def on_close(self):
     self.handler.on_close(self.connection)
 
+  def select_subprotocol(self, subprotocols):
+    # Workaround an issue in some versions of WebKit.
+    return subprotocols[0] if len(subprotocols) else None
+
+  def allow_draft76(self):
+    # Support older WebSocket protocol versions.
+    return True
 
 class TornadoWebSocketConnection(webserver.WebSocketConnection):
 
