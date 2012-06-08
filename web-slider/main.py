@@ -10,6 +10,7 @@ def main():
   webserver.run()
 
 def slider_updated(value, connection):
+  # TODO: Communicate with LED bar graph
   print 'Slider value: ', value
 
 if __name__ == '__main__':
