@@ -1,6 +1,6 @@
 import json
 
-from webserver import WebSocketHandler
+from quick2web.webserver import WebSocketHandler
 
 class SharedValue(WebSocketHandler):
 

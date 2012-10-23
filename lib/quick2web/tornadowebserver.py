@@ -1,12 +1,12 @@
 import os
-import webserver
+import quick2web.webserver
 
 from socket import gethostname
 from tornado import websocket
 from tornado.ioloop import IOLoop
 from tornado.web import Application, StaticFileHandler
 
-class TornadoWebServer(webserver.WebServer):
+class TornadoWebServer(quick2web.webserver.WebServer):
 
   def __init__(self,
         port,
@@ -60,7 +60,7 @@ class TornadoWebSocketAdapter(websocket.WebSocketHandler):
     # Support older WebSocket protocol versions.
     return True
 
-class TornadoWebSocketConnection(webserver.WebSocketConnection):
+class TornadoWebSocketConnection(quick2web.webserver.WebSocketConnection):
 
   def __init__(self, tornado_handler):
     self.tornado_handler = tornado_handler
