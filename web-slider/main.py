@@ -1,10 +1,11 @@
-#!/usr/bin/env python
-
 from quick2web import WebServer, SharedValue
 
 def main():
   webserver = WebServer(port=8888, debug=True)
-  webserver.websocket('/slider-value', SharedValue(20, on_change=slider_updated))
+
+  webserver.websocket('/slider-value',
+      SharedValue(20, on_change=slider_updated))
+
   webserver.static_files('/', './static')
   print 'Listening on %s' % webserver.url
   webserver.run()

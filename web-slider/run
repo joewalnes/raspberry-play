@@ -1,4 +1,5 @@
 #!/bin/bash
 set -e
 cd $(dirname 0)
-PYTHONPATH=../lib ./main.py
+export PYTHONPATH=../lib
+python ./main.py

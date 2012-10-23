@@ -1,36 +1,7 @@
 <!DOCTYPE html> 
 <title>Slider</title> 
 
-<!-- iOS enhancements -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-<link rel="stylesheet" href="quick2web/jquery.mobile-1.1.0.min.css">
-<script src="quick2web/jquery-1.7.1.min.js"></script>
-<script src="quick2web/jquery.mobile-1.1.0.min.js"></script>
-<script src="quick2web/reconnecting-websocket.js"></script>
-<script src="quick2web/sharedvalue.js"></script>
-
-<script>
-  $(function() {
-    var sliderControl = $('#slider1');
-    var sliderValue = new SharedValue('/slider-value')
-      .open(function() {
-        sliderControl.slider('enable'); 
-      })
-      .close(function() {
-        sliderControl.slider('disable');
-      })
-      .change(function(event, value) {
-        sliderControl.val(value).slider('refresh')
-      });
-
-    sliderControl.change(function(event, element) {
-      sliderValue.set(sliderControl.val());
-    });
-  });
-</script>
+<script src="quick2web/init.js"></script>
 
 <div data-role="page">
 
@@ -41,7 +12,10 @@
   <div data-role="content">
     <p>Adjust LED bar graph:</p>
     <p>
-      <input type="range" disabled id="slider1" value="31" min="0" max="63" data-highlight="true">
+    <input type="range"
+        min="0" max="63"
+        data-highlight="true"
+        data-shared="/slider-value">
     </p>
   </div>
 
